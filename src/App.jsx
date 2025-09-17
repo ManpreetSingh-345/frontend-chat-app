@@ -1,16 +1,16 @@
 import React from "react";
 import axios from "axios";
+import Home from "./components/Home";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 const App = () => {
-  const getObj = async () => {
-    await axios
-      .get("http://localhost:8080/")
-      .then((res) => console.log(res.data));
-  };
-
-  getObj();
-
-  return <div>App</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
