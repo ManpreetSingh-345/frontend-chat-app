@@ -2,14 +2,14 @@ import React from "react";
 import axios from "axios";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router";
-import Navbar from "./components/Navbar";
+import Chatroom from "./pages/Chatroom";
 
 const App = () => {
   return (
     <div>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/chatroom" element={<Chatroom />} />
       </Routes>
     </div>
   );
