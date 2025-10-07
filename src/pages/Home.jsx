@@ -25,7 +25,17 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <div className="bg-[#D9D9D9]">Some items</div>
+      <div className="bg-[#D9D9D9] grid md:grid-cols-[repeat(auto-fit,minmax(200px,_1fr))] place-content-around gap-10 text-center sm:grid-rows-3 p-10">
+        <div className="border rounded-sm border-black p-15 md:row-start-2 md:row-end-3">
+          Item 1
+        </div>
+        <div className="border rounded-sm border-black p-15 md:row-start-2 md:row-end-3">
+          Item 2
+        </div>
+        <div className="border rounded-sm border-black p-15 md:row-start-2 md:row-end-3">
+          Item 3
+        </div>
+      </div>
     </div>
   );
 };
