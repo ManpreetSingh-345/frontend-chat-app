@@ -8,6 +8,7 @@ import bookIcon from "../assets/book.png";
 const Home = () => {
   return (
     <div className="homepage h-[100vh] bg-[#D9D9D9]">
+      {/* Hero/Header Section */}
       <Navbar />
       <div className="h-full relative">
         <video
@@ -28,6 +29,7 @@ const Home = () => {
           </button>
         </div>
       </div>
+      {/* Boxes containing information */}
       <div className="bg-[#D9D9D9] grid md:grid-cols-[repeat(auto-fit,minmax(200px,_1fr))] place-content-around gap-10 text-center align-center p-[8vw]">
         <div className="border rounded-sm border-black p-15 md:row-start-1 md:row-end-2 grid gap-5">
           <div>
