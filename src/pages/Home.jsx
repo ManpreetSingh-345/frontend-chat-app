@@ -7,10 +7,10 @@ import bookIcon from "../assets/book.png";
 
 const Home = () => {
   return (
-    <div className="homepage h-[100vh] bg-[#D9D9D9]">
+    <div className="homepage h-[100vh] w-[100vw] bg-[#D9D9D9]">
       {/* Hero/Header Section */}
       <Navbar />
-      <div className="h-full relative">
+      <div className="h-full w-full relative">
         <video
           className="object-cover brightness-75 h-full w-full absolute left-0 right-0 border-2"
           autoPlay
@@ -49,6 +49,11 @@ const Home = () => {
           </div>
           <div>Learn a langauge at the same time!</div>
         </div>
+      </div>
+      {/* Footer Section */}
+      <div className="bg-black text-white flex justify-center items-center flex-col">
+        <div className="pt-5">Chatlify 2025</div>
+        <div className="pb-5">By Manpreet Singh</div>
       </div>
     </div>
   );
