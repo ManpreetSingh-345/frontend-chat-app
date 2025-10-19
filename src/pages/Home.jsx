@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import bgVideo from "../assets/background.mp4";
+import homeBgVideo from "../assets/background.mp4";
 import userIcon from "../assets/user.png";
 import robotIcon from "../assets/robot.png";
 import bookIcon from "../assets/book.png";
 
 const Home = () => {
   return (
-    <div className="homepage h-[100vh] w-[100vw] bg-[#D9D9D9]">
+    <div className="homepage h-[100vh] min-h-[600px] w-[100vw] bg-[#D9D9D9]">
       {/* Hero/Header Section */}
       <Navbar />
       <div className="h-full w-full relative">
@@ -18,7 +18,7 @@ const Home = () => {
           loop
           playsInline
         >
-          <source src={bgVideo} type="video/mp4" />
+          <source src={homeBgVideo} type="video/mp4" />
         </video>
         <div className="h-full flex justify-center items-center opacity-95 flex-col gap-10">
           <h1 className="md:text-5xl text-pretty text-center text-[8vw] text-white break-normal">
