@@ -7,7 +7,7 @@ import bookIcon from "../assets/book.png";
 
 const Home = () => {
   return (
-    <div className="homepage h-[100vh] min-h-[600px] w-[100vw] bg-[#D9D9D9]">
+    <div className="homepage h-[100vh] min-h-[600px] w-[100vw] min-w-[300px] bg-[#D9D9D9]">
       {/* Hero/Header Section */}
       <Navbar />
       <div className="h-full w-full relative">

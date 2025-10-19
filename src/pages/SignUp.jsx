@@ -4,7 +4,7 @@ import signUpBgVideo from "../assets/signUpBackground.mp4";
 
 const SignUp = () => {
   return (
-    <div className="sign-up-page h-[100vh] min-h-[700px] w-[100vw] bg-[#D9D9D9]">
+    <div className="sign-up-page h-[100vh] min-h-[700px] w-[100vw] min-w-[300px] bg-[#D9D9D9]">
       <Navbar />
       <div className="h-full w-full relative">
         <video
