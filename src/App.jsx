@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Chatroom from "./pages/Chatroom";
 import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/chatroom" element={<Chatroom />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
