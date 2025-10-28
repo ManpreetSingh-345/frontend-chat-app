@@ -2,8 +2,36 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import signUpBgVideo from "../assets/signUpBackground.mp4";
 import { useNavigate } from "react-router";
+import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+  const [inputFields, setInputFields] = useState({
+    username: "",
+    password: "",
+  });
+
+  function setUsername(username) {
+    inputFields.username = username;
+    setInputFields(inputFields);
+    return;
+  }
+
+  function setPassword(password) {
+    inputFields.password = password;
+    setInputFields(inputFields);
+    return;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:8080/users/new", inputFields) // Replace with user auth endpoint
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  }
+
   const navigate = useNavigate();
   return (
     <div className="login-page h-[100vh] min-h-[700px] w-[100vw] min-w-[300px] bg-[#D9D9D9]">
@@ -23,9 +51,13 @@ const Login = () => {
             Log in!
           </h1>
           <div className="bg-transparent border border-white p-10 rounded-xl flex flex-col md:text-[15px] text-[2.5vw]">
-            <div className="flex flex-col p-5 gap-3 text-white">
+            <form
+              onSubmit={(e) => handleSubmit(e)}
+              className="flex flex-col p-5 gap-3 text-white"
+            >
               <label htmlFor="username">Username: </label>
               <input
+                onChange={(e) => setUsername(e.target.value)}
                 type="text"
                 name="username"
                 id="username"
@@ -35,6 +67,7 @@ const Login = () => {
 
               <label htmlFor="password">Password: </label>
               <input
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 name="password"
                 id="password"
@@ -47,7 +80,7 @@ const Login = () => {
                 value="Submit"
                 className="w-25 self-center bg-transparent border border-white mt-5 rounded-xl transition hover:bg-white hover:text-black hover:cursor-pointer hover:transition"
               />
-            </div>
+            </form>
           </div>
           <div className="text-white">
             <h3>
