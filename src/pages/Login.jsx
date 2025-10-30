@@ -11,20 +11,10 @@ const Login = () => {
     password: "",
   });
 
-  function setUsername(username) {
-    inputFields.username = username;
-    setInputFields(inputFields);
-    return;
-  }
-
-  function setPassword(password) {
-    inputFields.password = password;
-    setInputFields(inputFields);
-    return;
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
+
+    setInputFields(inputFields);
 
     axios
       .post("http://localhost:8080/users/query", inputFields) // Replace with user auth endpoint
@@ -57,7 +47,9 @@ const Login = () => {
             >
               <label htmlFor="username">Username: </label>
               <input
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  inputFields.username = e.target.value;
+                }}
                 type="text"
                 name="username"
                 id="username"
@@ -67,7 +59,9 @@ const Login = () => {
 
               <label htmlFor="password">Password: </label>
               <input
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  inputFields.password = e.target.value;
+                }}
                 type="password"
                 name="password"
                 id="password"
