@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8080/users/new", inputFields) // Replace with user auth endpoint
+      .post("http://localhost:8080/users/query", inputFields) // Replace with user auth endpoint
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
   }
