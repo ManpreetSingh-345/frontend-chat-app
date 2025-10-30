@@ -2,8 +2,30 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import signUpBgVideo from "../assets/signUpBackground.mp4";
 import { useNavigate } from "react-router";
+import { useState } from "react";
+import axios from "axios";
 
 const SignUp = () => {
+  const [inputFields, setInputFields] = useState({
+    username: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (inputFields.password === inputFields.repeatPassword) {
+      setInputFields(inputFields);
+      axios
+        .post("http://localhost:8080/users/new", inputFields)
+        .then((res) => console.log(res))
+        .catch((error) => res.json(console.log(error)));
+    } else {
+      console.log("Passwords don't match");
+    }
+  };
   const navigate = useNavigate();
   return (
     <div className="sign-up-page h-[100vh] min-h-[700px] w-[100vw] min-w-[300px] bg-[#D9D9D9]">
@@ -23,9 +45,15 @@ const SignUp = () => {
             Sign Up Now!
           </h1>
           <div className="bg-transparent border border-white p-10 rounded-xl flex flex-col md:text-[15px] text-[2.5vw]">
-            <div className="flex flex-col p-5 gap-3 text-white">
+            <form
+              onSubmit={(e) => handleSubmit(e)}
+              className="flex flex-col p-5 gap-3 text-white"
+            >
               <label htmlFor="username">Username: </label>
               <input
+                onChange={(e) => {
+                  inputFields.username = e.target.value;
+                }}
                 type="text"
                 name="username"
                 id="username"
@@ -35,6 +63,9 @@ const SignUp = () => {
 
               <label htmlFor="email">Email: </label>
               <input
+                onChange={(e) => {
+                  inputFields.email = e.target.value;
+                }}
                 type="email"
                 name="email"
                 id="email"
@@ -44,6 +75,9 @@ const SignUp = () => {
 
               <label htmlFor="password">Password: </label>
               <input
+                onChange={(e) => {
+                  inputFields.password = e.target.value;
+                }}
                 type="password"
                 name="password"
                 id="password"
@@ -53,6 +87,9 @@ const SignUp = () => {
 
               <label htmlFor="repeat-password">Repeat Password: </label>
               <input
+                onChange={(e) => {
+                  inputFields.repeatPassword = e.target.value;
+                }}
                 type="password"
                 name="repeat-password"
                 id="repeat-password"
@@ -65,7 +102,7 @@ const SignUp = () => {
                 value="Submit"
                 className="w-25 self-center bg-transparent border border-white mt-5 rounded-xl transition hover:bg-white hover:text-black hover:cursor-pointer hover:transition"
               />
-            </div>
+            </form>
             <div className="text-white">
               <h3>
                 Already have an account?{" "}
