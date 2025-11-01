@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [inputFields, setInputFields] = useState({
     username: "",
     email: "",
@@ -20,13 +21,16 @@ const SignUp = () => {
       setInputFields(inputFields);
       axios
         .post("http://localhost:8080/users/new", inputFields)
-        .then((res) => console.log(res))
+        .then((res) =>
+          navigate("/login", {
+            state: { message: "Signed up successfully! Log in below." },
+          })
+        )
         .catch((error) => res.json(console.log(error)));
     } else {
       console.log("Passwords don't match");
     }
   };
-  const navigate = useNavigate();
   return (
     <div className="sign-up-page h-[100vh] min-h-[700px] w-[100vw] min-w-[300px] bg-[#D9D9D9]">
       <Navbar />

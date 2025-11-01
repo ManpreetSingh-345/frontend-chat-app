@@ -4,8 +4,12 @@ import signUpBgVideo from "../assets/signUpBackground.mp4";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router";
 
 const Login = () => {
+  const location = useLocation();
+  const message = location.state?.message;
+
   const [inputFields, setInputFields] = useState({
     username: "",
     password: "",
@@ -37,6 +41,11 @@ const Login = () => {
           <source src={signUpBgVideo} type="video/mp4" />
         </video>
         <div className="h-full flex justify-center items-center opacity-95 flex-col gap-10">
+          {message && (
+            <div className="text-center text-white md:text-2xl text-[3vw] border p-5">
+              Sign up successful! Please log in below.
+            </div>
+          )}
           <h1 className="text-center text-white md:text-3xl text-[5vw]">
             Log in!
           </h1>
