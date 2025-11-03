@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div className="homepage h-[100vh] min-h-[600px] w-[100vw] min-w-[300px]">
       {/* Hero/Header Section */}
-      <Navbar login={true} />
+      <Navbar loginButton={true} />
       <div className="h-full w-full relative">
         <video
           className="object-cover brightness-75 h-full w-full absolute left-0 right-0 border-2"

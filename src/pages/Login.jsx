@@ -29,7 +29,7 @@ const Login = () => {
   const navigate = useNavigate();
   return (
     <div className="login-page h-[100vh] min-h-[700px] w-[100vw] min-w-[300px] bg-[#D9D9D9]">
-      <Navbar login={false} />
+      <Navbar />
       <div className="h-full w-full relative">
         <video
           className="object-cover brightness-75 h-full w-full absolute left-0 right-0 border-2"
