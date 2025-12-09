@@ -1,7 +1,7 @@
 import React from "react";
-import userIcon from "../../../assets/user.png";
-import robotIcon from "../../../assets/robot.png";
-import bookIcon from "../../../assets/book.png";
+import userIcon from "@assets/user.png";
+import robotIcon from "@assets/robot.png";
+import bookIcon from "@assets/book.png";
 
 const Grid = () => {
   return (

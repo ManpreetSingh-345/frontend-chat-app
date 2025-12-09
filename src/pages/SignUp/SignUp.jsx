@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
-import signUpBgVideo from "../../assets/signUpBackground.mp4";
+import Navbar from "@components/Navbar";
+import signUpBgVideo from "@assets/signUpBackground.mp4";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import axios from "axios";

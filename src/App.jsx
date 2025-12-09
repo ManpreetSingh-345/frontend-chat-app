@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./pages/Home/Home";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { Routes, Route } from "react-router";
 import Chatroom from "./pages/Chatroom/Chatroom";
 import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
