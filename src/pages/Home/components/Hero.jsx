@@ -1,8 +1,10 @@
 import React from "react";
 import Navbar from "../../../components/Navbar";
 import homeBgVideo from "../../../assets/background.mp4";
+import { useNavigate } from "react-router";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar loginButton={true} />
