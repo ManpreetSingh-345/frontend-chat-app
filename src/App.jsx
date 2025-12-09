@@ -1,9 +1,9 @@
 import React from "react";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router";
-import Chatroom from "./pages/Chatroom";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
+import Chatroom from "./pages/Chatroom/Chatroom";
+import SignUp from "./pages/SignUp/SignUp";
+import Login from "./pages/Login/Login";
 
 const App = () => {
   return (

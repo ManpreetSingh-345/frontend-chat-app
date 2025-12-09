@@ -1,0 +1,20 @@
+import React from "react";
+import { useNavigate } from "react-router";
+import Hero from "./components/Hero";
+import Grid from "./components/Grid";
+import Footer from "./components/Footer";
+
+const Home = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="homepage h-[100vh] min-h-[600px] w-[100vw] min-w-[300px]">
+      <Hero />
+      <Grid />
+      {/* Footer Section */}
+      <Footer />
+    </div>
+  );
+};
+
+export default Home;
