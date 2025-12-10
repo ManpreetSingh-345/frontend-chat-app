@@ -8,7 +8,6 @@ const Home = () => {
     <div className="homepage h-[100vh] min-h-[600px] w-[100vw] min-w-[300px]">
       <Hero />
       <Grid />
-      {/* Footer Section */}
       <Footer />
     </div>
   );
