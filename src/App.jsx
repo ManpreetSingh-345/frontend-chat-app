@@ -4,15 +4,18 @@ import { Routes, Route } from "react-router";
 import Chatroom from "./pages/Chatroom/Chatroom";
 import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/chatroom" element={<Chatroom />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
+        <AuthProvider>
+          <Route path="/" element={<Home />} />
+          <Route path="/chatroom" element={<Chatroom />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+        </AuthProvider>
       </Routes>
     </div>
   );
