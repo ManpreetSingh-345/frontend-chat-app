@@ -11,6 +11,7 @@ const Form = () => {
     password: "",
     repeatPassword: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,11 +27,16 @@ const Form = () => {
         )
         .catch((error) => res.json(console.log(error)));
     } else {
-      console.log("Passwords don't match");
+      setErrorMessage("Passwords don't match. Please try again.");
     }
   };
   return (
     <div className="h-full flex justify-center items-center opacity-95 flex-col gap-10">
+      {errorMessage && (
+        <div className="text-center text-white md:text-lg text-[3vw] border p-5">
+          {errorMessage}
+        </div>
+      )}
       <h1 className="text-center text-white md:text-3xl text-[5vw]">
         Sign Up Now!
       </h1>
