@@ -1,10 +1,14 @@
 import React from "react";
-import { useAuth } from "src/contexts/AuthContext";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Chatroom = () => {
+  const navigate = useNavigate();
+  const { authUser } = useAuth();
+
   return (
     <div className="chatpage">
-      <div className=""></div>
+      <div className="">Current User: {authUser}</div>
     </div>
   );
 };
