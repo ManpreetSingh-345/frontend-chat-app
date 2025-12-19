@@ -7,7 +7,7 @@ import axios from "axios";
 const Form = () => {
   const location = useLocation();
   const [message, setMessage] = useState("");
-  const { setAuthUser } = useAuth();
+  const { setAuthUser, setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const [inputFields, setInputFields] = useState({
@@ -25,6 +25,7 @@ const Form = () => {
       .then((res) => {
         try {
           setAuthUser(res.data.user.username);
+          setIsLoggedIn(true);
           navigate("/chatroom");
         } catch (error) {
           setMessage("Username or password does not match. Please try again.");
