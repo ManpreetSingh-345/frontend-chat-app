@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "@components/Navbar";
 import signUpBgVideo from "@assets/signUpBackground.mp4";
 import Form from "./components/Form";

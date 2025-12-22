@@ -1,11 +1,9 @@
-import React from "react";
 import { useAuth } from "@contexts/AuthContext";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import axios from "axios";
 
 const Form = () => {
-  const location = useLocation();
   const [message, setMessage] = useState("");
   const { setAuthUser, setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -21,10 +19,14 @@ const Form = () => {
     setInputFields(inputFields);
 
     axios
-      .post("http://localhost:8080/users/query", inputFields) // Replace with user auth endpoint
+      .post("http://localhost:8080/users/query", inputFields, {
+        withCredentials: true,
+      }) // Replace with user auth endpoint
       .then((res) => {
         try {
-          setAuthUser(res.data.user.username);
+          const name = res.data.user.username;
+          const accessToken = res.data.accessToken;
+          setAuthUser({ name, accessToken });
           setIsLoggedIn(true);
           navigate("/chatroom");
         } catch (error) {
