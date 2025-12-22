@@ -5,12 +5,32 @@ import axios from "axios";
 
 const Chatroom = () => {
   const navigate = useNavigate();
-  const { authUser, isLoggedIn } = useAuth();
+  const { authUser, isLoggedIn, setAuthUser } = useAuth();
+
+  const name = authUser.name;
+  const accessToken = authUser.accessToken;
+
+  const refreshToken = () => {
+    axios
+      .post(
+        "http://localhost:8080/auth/refresh",
+        { name },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        const newAccessToken = res.data.newAccessToken;
+        setAuthUser({ accessToken: newAccessToken });
+        console.log(authUser);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const verifyUser = () => {
     axios
-      .get("http://localhost:8080/users/verify", {
-        headers: { Authorization: `Bearer ${authUser.accessToken}` },
+      .get("http://localhost:8080/auth/verify", {
+        headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((res) => {
         console.log(res.data.message);
@@ -18,6 +38,8 @@ const Chatroom = () => {
       .catch((err) => {
         console.error(err);
         console.log("User not verified");
+        console.log("Attempting to refresh token");
+        refreshToken();
       });
   };
 
