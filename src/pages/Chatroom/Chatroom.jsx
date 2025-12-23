@@ -4,7 +4,12 @@ import { useAuth } from "@contexts/AuthContext";
 
 const Chatroom = () => {
   const navigate = useNavigate();
-  const { authUser, setAuthUser, isLoggedIn } = useAuth();
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+
+  if (!authUser) {
+    const test = handleToken(authUser, setAuthUser, setIsLoggedIn);
+    test();
+  }
 
   const redirect = () => {
     navigate("/login");
@@ -26,7 +31,7 @@ const Chatroom = () => {
         </div>
       )}
       {authUser && (
-        <button onClick={handleToken(authUser, setAuthUser)}>
+        <button onClick={handleToken(authUser, setAuthUser, setIsLoggedIn)}>
           Verify user
         </button>
       )}
