@@ -1,11 +1,10 @@
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
-const handleRefreshToken = (authUser, setAuthUser) => {
+const handleToken = (authUser, setAuthUser) => {
   const name = authUser?.name;
   const accessToken = authUser?.accessToken;
   const navigate = useNavigate();
-  const location = useLocation();
 
   const refreshToken = () => {
     axios
@@ -36,7 +35,7 @@ const handleRefreshToken = (authUser, setAuthUser) => {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((res) => {
-        console.log(res.data.message);
+        console.log(res.data.message); // Replace with status code 200 (Ok) for accessing protected routes
       })
       .catch((err) => {
         console.error(err);
@@ -49,4 +48,4 @@ const handleRefreshToken = (authUser, setAuthUser) => {
   return verifyUser;
 };
 
-export default handleRefreshToken;
+export default handleToken;

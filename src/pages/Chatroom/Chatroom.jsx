@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import handleRefreshToken from "@src/utils/handleRefreshToken";
+import handleToken from "@src/utils/handleToken";
 import { useAuth } from "@contexts/AuthContext";
 
 const Chatroom = () => {
@@ -26,7 +26,7 @@ const Chatroom = () => {
         </div>
       )}
       {authUser && (
-        <button onClick={handleRefreshToken(authUser, setAuthUser)}>
+        <button onClick={handleToken(authUser, setAuthUser)}>
           Verify user
         </button>
       )}
