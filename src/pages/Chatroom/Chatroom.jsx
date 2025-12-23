@@ -1,57 +1,35 @@
-import React from "react";
 import { useNavigate } from "react-router";
+import handleRefreshToken from "@src/utils/handleRefreshToken";
 import { useAuth } from "@contexts/AuthContext";
-import axios from "axios";
 
 const Chatroom = () => {
   const navigate = useNavigate();
-  const { authUser, isLoggedIn, setAuthUser } = useAuth();
+  const { authUser, setAuthUser, isLoggedIn } = useAuth();
 
-  const name = authUser.name;
-  const accessToken = authUser.accessToken;
-
-  const refreshToken = () => {
-    axios
-      .post(
-        "http://localhost:8080/auth/refresh",
-        { name },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        const newAccessToken = res.data.newAccessToken;
-        setAuthUser({ accessToken: newAccessToken });
-        console.log(authUser);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const verifyUser = () => {
-    axios
-      .get("http://localhost:8080/auth/verify", {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => {
-        console.log(res.data.message);
-      })
-      .catch((err) => {
-        console.error(err);
-        console.log("User not verified");
-        console.log("Attempting to refresh token");
-        refreshToken();
-      });
+  const redirect = () => {
+    navigate("/login");
   };
 
   return (
     <div className="chatpage">
-      <div className="">Current User: {authUser.name}</div>
+      <div className="">
+        Current User: {authUser ? authUser.name : "No valid user"}
+      </div>
       {isLoggedIn ? (
         <div>You are logged in</div>
       ) : (
-        <div>You are not logged in</div>
+        <div>
+          You are not{" "}
+          <span onClick={redirect} className="underline cursor-pointer">
+            logged in
+          </span>
+        </div>
       )}
-      <button onClick={verifyUser}>Verify user</button>
+      {authUser && (
+        <button onClick={handleRefreshToken(authUser, setAuthUser)}>
+          Verify user
+        </button>
+      )}
     </div>
   );
 };
