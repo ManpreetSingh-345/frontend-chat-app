@@ -1,17 +1,27 @@
 import { useAuth } from "@contexts/AuthContext";
-import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useNavigate, useLocation } from "react-router";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Form = () => {
+const Form = (props) => {
   const [message, setMessage] = useState("");
   const { setAuthUser, setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
+  let location = useLocation();
 
   const [inputFields, setInputFields] = useState({
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (location.state) {
+      setMessage(location.state?.message);
+      location.state = null;
+    } else {
+      navigate("/login", { replace: true, state: {} });
+    }
+  }, [location.pathname, navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();

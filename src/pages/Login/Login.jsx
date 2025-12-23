@@ -1,8 +1,11 @@
 import Navbar from "@components/Navbar";
 import signUpBgVideo from "@assets/signUpBackground.mp4";
 import Form from "./components/Form";
+import { useLocation } from "react-router";
 
 const Login = () => {
+  const location = useLocation();
+  const message = location.state?.message;
   return (
     <div className="login-page h-[100vh] min-h-[700px] w-[100vw] min-w-[300px] bg-[#D9D9D9]">
       <Navbar />
@@ -16,7 +19,7 @@ const Login = () => {
         >
           <source src={signUpBgVideo} type="video/mp4" />
         </video>
-        <Form />
+        <Form message={message} />
       </div>
     </div>
   );

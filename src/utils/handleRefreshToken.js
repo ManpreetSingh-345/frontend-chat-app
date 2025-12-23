@@ -1,8 +1,11 @@
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router";
 
 const handleRefreshToken = (authUser, setAuthUser) => {
   const name = authUser?.name;
   const accessToken = authUser?.accessToken;
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const refreshToken = () => {
     axios
@@ -17,7 +20,13 @@ const handleRefreshToken = (authUser, setAuthUser) => {
         console.log(authUser);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.status === 401) {
+          navigate("/login", {
+            state: {
+              message: "Token expired. Please log in again.",
+            },
+          });
+        }
       });
   };
 
