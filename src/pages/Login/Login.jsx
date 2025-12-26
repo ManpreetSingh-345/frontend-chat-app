@@ -20,11 +20,19 @@ const Login = () => {
       }
     };
     callRefresh();
-  }, [authUser]);
+  }, []);
 
-  return isLoggedIn ? (
-    navigate("/chatroom")
-  ) : (
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/chatroom");
+    }
+  }, [isLoggedIn]);
+
+  if (isLoggedIn) {
+    return null;
+  }
+
+  return (
     <div className="login-page h-[100vh] min-h-[700px] w-[100vw] min-w-[300px] bg-[#D9D9D9]">
       <Navbar />
       <div className="h-full w-full relative">

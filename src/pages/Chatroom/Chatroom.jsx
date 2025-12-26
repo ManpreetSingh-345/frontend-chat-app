@@ -1,26 +1,35 @@
 import { useNavigate } from "react-router";
 import handleToken from "@src/utils/handleToken";
 import { useAuth } from "@contexts/AuthContext";
+import { useEffect, useState } from "react";
 
 const Chatroom = () => {
   const navigate = useNavigate();
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+  const persist = handleToken(authUser, setAuthUser, setIsLoggedIn);
 
-  if (!authUser) {
-    const persist = handleToken(authUser, setAuthUser, setIsLoggedIn);
-    persist();
+  useEffect(() => {
+    if (!authUser) {
+      persist();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
+
+  if (!isLoggedIn) {
+    return null;
   }
-
-  const redirect = () => {
-    navigate("/login");
-  };
 
   return (
     <div className="chatpage">
       <div className="">
         Current User: {authUser ? authUser.name : "No valid user"}
       </div>
-      {isLoggedIn ? <div>You are logged in</div> : navigate("/login")}
+      <div>You are logged in</div>
       {authUser && (
         <button onClick={handleToken(authUser, setAuthUser, setIsLoggedIn)}>
           Verify user

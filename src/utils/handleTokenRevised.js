@@ -33,17 +33,7 @@ const handleToken = (authUser, setAuthUser, setIsLoggedIn) => {
       refreshToken();
     }
 
-    axiosPrivate
-      .get("/auth/verify")
-      .then((res) => {
-        console.log(res.data.message); // Replace with status code 200 (Ok) for accessing protected routes
-      })
-      .catch((err) => {
-        console.error(err);
-        console.log("User not verified");
-        console.log("Attempting to refresh token");
-        refreshToken();
-      });
+    const response = axiosPrivate.get("")
   };
 
   return verifyUser;
