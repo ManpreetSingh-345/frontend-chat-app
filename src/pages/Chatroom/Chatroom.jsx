@@ -7,8 +7,8 @@ const Chatroom = () => {
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
 
   if (!authUser) {
-    const test = handleToken(authUser, setAuthUser, setIsLoggedIn);
-    test();
+    const persist = handleToken(authUser, setAuthUser, setIsLoggedIn);
+    persist();
   }
 
   const redirect = () => {
@@ -20,16 +20,7 @@ const Chatroom = () => {
       <div className="">
         Current User: {authUser ? authUser.name : "No valid user"}
       </div>
-      {isLoggedIn ? (
-        <div>You are logged in</div>
-      ) : (
-        <div>
-          You are not{" "}
-          <span onClick={redirect} className="underline cursor-pointer">
-            logged in
-          </span>
-        </div>
-      )}
+      {isLoggedIn ? <div>You are logged in</div> : navigate("/login")}
       {authUser && (
         <button onClick={handleToken(authUser, setAuthUser, setIsLoggedIn)}>
           Verify user
