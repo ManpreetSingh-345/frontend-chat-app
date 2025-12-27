@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router";
-import handleToken from "@src/utils/handleToken";
 import { useAuth } from "@contexts/AuthContext";
-import { useEffect, useState } from "react";
+import { useLogout } from "@src/hooks/useLogout";
+import { useEffect } from "react";
+import { useRefreshToken } from "@src/hooks/useRefreshToken";
 
 const Chatroom = () => {
   const navigate = useNavigate();
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
-  const persist = handleToken(authUser, setAuthUser, setIsLoggedIn);
+  const refresh = useRefreshToken();
+  const logout = useLogout();
+  const { authUser, isLoggedIn } = useAuth();
 
   useEffect(() => {
     if (!authUser) {
-      persist();
+      refresh();
     }
   }, []);
 
@@ -18,11 +20,7 @@ const Chatroom = () => {
     if (!isLoggedIn) {
       navigate("/login");
     }
-  }, [isLoggedIn]);
-
-  if (!isLoggedIn) {
-    return null;
-  }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className="chatpage">
@@ -30,11 +28,8 @@ const Chatroom = () => {
         Current User: {authUser ? authUser.name : "No valid user"}
       </div>
       <div>You are logged in</div>
-      {authUser && (
-        <button onClick={handleToken(authUser, setAuthUser, setIsLoggedIn)}>
-          Verify user
-        </button>
-      )}
+      <br></br>
+      <button onClick={logout}>Log out</button>
     </div>
   );
 };
