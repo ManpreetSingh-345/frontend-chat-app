@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Form = (props) => {
+const Form = () => {
   const [message, setMessage] = useState("");
   const { setAuthUser, setIsLoggedIn } = useAuth();
   const navigate = useNavigate();

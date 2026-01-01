@@ -1,4 +1,3 @@
-// Implement useRefreshToken as a substitute for handleToken for efficiency
 import { useAuth } from "@contexts/AuthContext";
 import axios from "../api/axios";
 

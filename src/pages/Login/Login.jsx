@@ -1,18 +1,18 @@
 import Navbar from "@components/Navbar";
 import signUpBgVideo from "@assets/signUpBackground.mp4";
 import Form from "./components/Form";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useAuth } from "@contexts/AuthContext";
 import { useRefreshToken } from "@src/hooks/useRefreshToken";
 import { useEffect } from "react";
 
 const Login = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const message = location.state?.message;
   const { authUser, isLoggedIn } = useAuth();
   const refresh = useRefreshToken();
 
+  // If the user loads into the login page having already been logged in,
+  // and their access token is expired, call refresh
   useEffect(() => {
     const callRefresh = async () => {
       if (!authUser) {
@@ -22,12 +22,15 @@ const Login = () => {
     callRefresh();
   }, []);
 
+  // If the user is logged in, and is trying to access the login page,
+  // redirect them to the chatroom page
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/chatroom");
     }
   }, [isLoggedIn]);
 
+  // If the user is logged in, return null (instead of returning the login page itself)
   if (isLoggedIn) {
     return null;
   }
@@ -45,7 +48,7 @@ const Login = () => {
         >
           <source src={signUpBgVideo} type="video/mp4" />
         </video>
-        <Form message={message} />
+        <Form />
       </div>
     </div>
   );

@@ -1,26 +1,9 @@
-import { useNavigate } from "react-router";
 import { useAuth } from "@contexts/AuthContext";
 import { useLogout } from "@src/hooks/useLogout";
-import { useEffect } from "react";
-import { useRefreshToken } from "@src/hooks/useRefreshToken";
 
 const Chatroom = () => {
-  const navigate = useNavigate();
-  const refresh = useRefreshToken();
+  const { authUser } = useAuth();
   const logout = useLogout();
-  const { authUser, isLoggedIn } = useAuth();
-
-  useEffect(() => {
-    if (!authUser) {
-      refresh();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-  }, [isLoggedIn, navigate]);
 
   return (
     <div className="chatpage">

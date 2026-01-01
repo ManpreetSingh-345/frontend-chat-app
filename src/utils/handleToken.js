@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router";
 import useAxiosPrivate from "@src/hooks/useAxiosPrivate";
 
-// Future modifications will include asynchronous handling of responses
-// for race conditions
+// This code will not be used in production, only for development/testing
 const handleToken = (authUser, setAuthUser, setIsLoggedIn) => {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();

@@ -5,6 +5,7 @@ import Chatroom from "./pages/Chatroom/Chatroom";
 import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
 import { AuthProvider } from "./contexts/AuthContext";
+import PersistLogin from "./utils/PersistLogin";
 
 const App = () => {
   return (
@@ -12,9 +13,12 @@ const App = () => {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/chatroom" element={<Chatroom />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          {/* Wrapper Component for authenticating user (PersistLogin) */}
+          <Route element={<PersistLogin />}>
+            <Route path="/chatroom" element={<Chatroom />} />
+          </Route>
         </Routes>
       </AuthProvider>
     </div>
