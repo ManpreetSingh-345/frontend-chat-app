@@ -1,18 +1,9 @@
-import { useAuth } from "@contexts/AuthContext";
-import { useLogout } from "@src/hooks/useLogout";
+import Navbar from "@components/Navbar";
 
 const Chatroom = () => {
-  const { authUser } = useAuth();
-  const logout = useLogout();
-
   return (
-    <div className="chatpage">
-      <div className="">
-        Current User: {authUser ? authUser.name : "No valid user"}
-      </div>
-      <div>You are logged in</div>
-      <br></br>
-      <button onClick={logout}>Log out</button>
+    <div className="chatpage bg-[#52498F] h-[100vh]">
+      <Navbar user={true} />
     </div>
   );
 };
