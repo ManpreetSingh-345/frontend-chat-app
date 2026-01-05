@@ -2,15 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "@contexts/AuthContext";
 import { useLogout } from "@src/hooks/useLogout";
+import { useEffect } from "react";
 
 const Navbar = (props) => {
   const navigate = useNavigate();
   const { authUser } = useAuth();
   const logout = useLogout();
-
-  if (!authUser) {
-    return null;
-  }
 
   return (
     <div className="flex place-content-between p-5 fixed z-10 left-0 right-0">
@@ -31,7 +28,7 @@ const Navbar = (props) => {
         )}
         {props?.user && (
           <div className="font-[inter] font-bold md:text-[20px] text-[3vw] text-white">
-            <div>Current User: {authUser.name}</div>
+            <div>Current User: {authUser ? authUser.name : "No user"}</div>
             <button onClick={logout}>Logout</button>
           </div>
         )}

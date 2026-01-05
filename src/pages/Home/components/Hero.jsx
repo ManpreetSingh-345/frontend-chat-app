@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "@components/Navbar";
 import homeBgVideo from "@assets/background.mp4";
 import { useNavigate } from "react-router";
 
@@ -7,7 +6,6 @@ const Hero = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Navbar loginButton={true} />
       <div className="h-full w-full">
         <video
           className="object-cover brightness-75 h-full w-full absolute left-0 right-0 border-2"

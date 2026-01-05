@@ -25,7 +25,6 @@ export const useRefreshToken = () => {
       setIsLoggedIn(true);
       return newAccessToken;
     } catch (error) {
-      console.log("Error refreshing");
       setAuthUser({});
       setIsLoggedIn(false);
       return null;
